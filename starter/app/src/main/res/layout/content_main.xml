@@ -9,6 +9,52 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <ImageView
+        android:id="@+id/imageView"
+
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#21232C"
+        android:contentDescription="@string/app_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icons8_flat_download"
+        tools:srcCompat="@drawable/icons8_flat_download" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintBottom_toTopOf="@id/custom_button">
+
+        <RadioButton
+            android:layout_marginVertical="15dp"
+            android:id="@+id/radioButton_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_text_size"
+            android:text="@string/option_one" />
+        <RadioButton
+            android:layout_marginVertical="15dp"
+            android:id="@+id/radioButton_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_text_size"
+            android:text="@string/option_two" />
+        <RadioButton
+            android:layout_marginVertical="15dp"
+            android:id="@+id/radioButton_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_text_size"
+            android:text="@string/option_three" />
+    </RadioGroup>
+
     <com.udacity.LoadingButton
         android:id="@+id/custom_button"
         android:layout_width="0dp"
@@ -17,6 +63,11 @@
         android:layout_height="60dp"
         android:layout_margin="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/radioGroup"
+        app:label="@string/button_name"
+        app:loadingLabel="We are loading"
+        app:boxBackgroundColor="@color/colorPrimary"
+        app:actionColor="@color/colorPrimaryDark"
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
