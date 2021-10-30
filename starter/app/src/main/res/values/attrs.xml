@@ -5,6 +5,5 @@
         <attr name="loadingLabel" format="string" />
         <attr name="boxBackgroundColor" format="color" />
         <attr name="actionColor" format="color" />
-        <attr name="animationCompletion" format="float" />
     </declare-styleable>
 </resources>

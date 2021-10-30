@@ -27,6 +27,8 @@ class LoadingButton @JvmOverloads constructor(
 
     private val circleRadius = resources.getDimension(R.dimen.circleRadius)
     private val textOffset = resources.getDimension(R.dimen.textOffset)
+    private val animationDuration = 4000L
+    private var animator = ValueAnimator.ofFloat(0f, 1.0f)
 
     private var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
         if (new == ButtonState.Completed) animationCompletion = 0.0f
@@ -51,9 +53,9 @@ class LoadingButton @JvmOverloads constructor(
 
     private fun startAnimation() {
         buttonState = ButtonState.Loading
-        val animator = ValueAnimator.ofFloat(0f, 1.0f)
+
         animator.interpolator = AccelerateDecelerateInterpolator()
-        animator.duration = 2000
+        animator.duration = animationDuration
         animator.addUpdateListener {
             animationCompletion = it.animatedValue as Float
             invalidate()
