@@ -5,9 +5,16 @@
     <string name="channel_id">DownloadChannel</string>
     <string name="channel_name">Download Channel</string>
     <string name="channel_description">Alert when download is finished</string>
+    <string name="option_not_selected">Please select the file to download</string>
+
+    <string name="filename_label">Filename:</string>
+    <string name="status_label">Status:</string>
 
     <string name="default_filename">Can´t load filename</string>
     <string name="default_status">Can´t load status</string>
+
+    <string name="download_success">Download successful</string>
+    <string name="download_failed">Download failed</string>
 
     <string name="notification_title">Udacity: Android Kotlin Nanodegree </string>
     <string name="notification_description">The Project 3 repository is downloaded</string>
@@ -16,6 +23,7 @@
     <string name="button_name">Download</string>
     <string name="button_loading">We are loading </string>
     <string name="title_activity_detail">DetailActivity</string>
+    <string name="view_details">View details</string>
 
     <string name="option_one">Glide - Image Loading Library by BumpTech</string>
     <string name="option_two">LoadApp - Current repository by Udacity</string>

@@ -1,7 +1,9 @@
 package com.udacity
 
+import android.app.NotificationManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.content_detail.*
 
@@ -12,10 +14,20 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
         setSupportActionBar(toolbar)
 
-        val filename_text =  "Filename: " + intent.extras?.getString("filename")
-        val status_text = "Status: " + intent.extras?.getString("status")
-        download_filename.text = filename_text
-        download_status.text = status_text
+        cancelNotificationsAndShowDetails()
     }
 
+    private fun cancelNotificationsAndShowDetails() {
+        val notificationManager = ContextCompat.getSystemService(
+                applicationContext,
+        NotificationManager::class.java
+        ) as NotificationManager
+
+        notificationManager.cancelNotifications()
+
+        val filenameText =  applicationContext.getString(R.string.filename_label) + " " + intent.extras?.getString("filename")
+        val statusText = applicationContext.getString(R.string.status_label) + " " + intent.extras?.getString("status")
+        download_filename.text = filenameText
+        download_status.text = statusText
+    }
 }

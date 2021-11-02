@@ -68,19 +68,19 @@ class MainActivity : AppCompatActivity() {
             val cursor = downloadManager.query(query)
             if (cursor.moveToFirst()) {
                 val status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
-                var status_text = "Download Failed"
+                var statusText = applicationContext.getString(R.string.download_failed)
                 if (DownloadManager.STATUS_SUCCESSFUL == status) {
-                    status_text = "Download Successful"
+                    statusText = applicationContext.getString(R.string.download_success)
                 }
                 val title = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_TITLE))
-                sendNotification(status_text, title)
+                sendNotification(statusText, title)
             }
         }
     }
 
     private fun download() {
         if (selectedOption == "") {
-            Toast.makeText(applicationContext, "Please select the file to download", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, applicationContext.getString(R.string.option_not_selected), Toast.LENGTH_LONG).show()
             return
         }
         custom_button.onStartDownload()
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
 
         val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
         downloadID =
-            downloadManager.enqueue(request)// enqueue puts the download request in the queue.
+            downloadManager.enqueue(request)
 
     }
 
