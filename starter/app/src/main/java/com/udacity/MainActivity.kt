@@ -60,7 +60,21 @@ class MainActivity : AppCompatActivity() {
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
-            sendNotification()
+            val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+
+            val extras = intent?.extras
+            val query = DownloadManager.Query()
+            query.setFilterById(id!!)
+            val cursor = downloadManager.query(query)
+            if (cursor.moveToFirst()) {
+                val status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
+                var status_text = "Download Failed"
+                if (DownloadManager.STATUS_SUCCESSFUL == status) {
+                    status_text = "Download Successful"
+                }
+                val title = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_TITLE))
+                sendNotification(status_text, title)
+            }
         }
     }
 
@@ -87,7 +101,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun sendNotification() {
+    fun sendNotification(status: String, filename: String) {
         val downloadOption = downloadOptions[selectedOption]
 
         val notificationManager = ContextCompat.getSystemService(
@@ -98,7 +112,9 @@ class MainActivity : AppCompatActivity() {
         notificationManager.cancelNotifications()
         notificationManager.sendNotification(
                 downloadOption?.title?:"Download",
-                applicationContext
+                applicationContext,
+                status,
+                filename
         )
     }
 
@@ -128,9 +144,9 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private val downloadOptions = mapOf(
-                Pair("op1", DownloadOption("https://github.com/bumptech/glide/archive/refs/heads/master.zip", "Glide", "Glide is a fast and efficient open source media management.")),
-                Pair("op2", DownloadOption("https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/refs/heads/master.zip", "LoadApp", "In this project students will create an app to download a file from Internet by clicking on a custom-built button.")),
-                Pair("op3", DownloadOption("https://github.com/square/retrofit/archive/refs/heads/master.zip", "Retrofit", "A type-safe HTTP client for Android and Java."))
+                Pair("op1", DownloadOption("https://github.com/bumptech/glide/archive/refs/heads/master.zip", "Glide - Image Loading Library by BumpTech", "Glide is a fast and efficient open source media management.")),
+                Pair("op2", DownloadOption("https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/refs/heads/master.zip", "LoadApp - Current repository by Udacity", "In this project students will create an app to download a file from Internet by clicking on a custom-built button.")),
+                Pair("op3", DownloadOption("https://github.com/square/retrofit/archive/refs/heads/master.zip", "Retrofit - Type-safe HTTP client for Android and Java by Square, Inc", "A type-safe HTTP client for Android and Java."))
         )
 
         class DownloadOption(

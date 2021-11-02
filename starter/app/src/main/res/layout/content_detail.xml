@@ -9,10 +9,23 @@
     tools:showIn="@layout/activity_detail"
     app:layoutDescription="@xml/detail_animation_scene">
 
-    <TextView
+    <LinearLayout
         android:id="@+id/detail_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/app_description">
-    </TextView>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/download_filename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/default_filename">
+        </TextView>
+        <TextView
+            android:id="@+id/download_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/default_status">
+        </TextView>
+    </LinearLayout>
+
 </androidx.constraintlayout.motion.widget.MotionLayout>

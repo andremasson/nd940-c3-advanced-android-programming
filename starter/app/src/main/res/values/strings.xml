@@ -6,6 +6,8 @@
     <string name="channel_name">Download Channel</string>
     <string name="channel_description">Alert when download is finished</string>
 
+    <string name="default_filename">Can´t load filename</string>
+    <string name="default_status">Can´t load status</string>
 
     <string name="notification_title">Udacity: Android Kotlin Nanodegree </string>
     <string name="notification_description">The Project 3 repository is downloaded</string>
