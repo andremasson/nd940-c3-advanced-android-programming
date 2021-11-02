@@ -95,6 +95,7 @@ class MainActivity : AppCompatActivity() {
                 NotificationManager::class.java
         ) as NotificationManager
 
+        notificationManager.cancelNotifications()
         notificationManager.sendNotification(
                 downloadOption?.title?:"Download",
                 applicationContext

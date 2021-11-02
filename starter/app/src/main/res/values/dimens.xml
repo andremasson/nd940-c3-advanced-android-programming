@@ -16,4 +16,7 @@
 
     <dimen name="textSize">18sp</dimen>
     <dimen name="buttonTextSize">28dp</dimen>
+
+    <dimen name="detailMarginStart">20dp</dimen>
+    <dimen name="detailMarginEnd">0dp</dimen>
 </resources>
